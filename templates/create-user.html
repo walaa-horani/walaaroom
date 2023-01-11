@@ -1,0 +1,30 @@
+{%extends 'main.html'%}
+{% load crispy_forms_tags %}
+{%block content%}
+
+    <div class="container mt-5 w-50 ">
+        <form class="loginform" method="POST" enctype="multipart/form-data" action="" novalidate>
+            <h1 class="text-center text-light">create profile</h1>
+            {%csrf_token%}
+
+           
+            <div class="form-group">
+          
+              {{form.media}}
+           {{form|crispy}}
+          
+        </div>
+
+   
+
+        <div class="form-action text-center mt-4">
+            <a class="button-delete"  href="{{request.META.HTTP_REFERER}}">cancel</a>
+            <button class="button button-edit" type="submit">update</button>
+        </div>
+
+        </form>
+    </div>
+
+
+
+{%endblock%}

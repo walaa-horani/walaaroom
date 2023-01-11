@@ -1,0 +1,18 @@
+
+<div class="col-lg-3 col-md-4 activity-box">
+    <h4 class="text-light">recent activity</h4>
+    <hr>
+    {%for message in room_messages %}
+
+    <div class="d-flex align-item-center justify-content-between">
+        <a class="user" href="{%url 'userprofile' message.user.id %}" >@{{message.user.username}}</a>
+        <small class="reply">{{message.created|timesince}}</small>
+    </div>
+        <small class="reply">replied to "{{message.room.name}}"</small><br>
+        <p class="message-reply-home">{{message}}</p>
+        {%if message.user == request.user %}
+        <a class="button-delete"  href="{%url 'delete-message' message.id %}">delete</a>
+        {%endif%}
+        <hr>
+    {%endfor%}
+</div>

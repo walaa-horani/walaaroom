@@ -1,0 +1,47 @@
+{%extends 'main.html'%}
+{%load static%}
+{%block content%}
+
+<div class="text-center mb-5 ">
+    {%if user.userprofile.avatar%}
+    <img style="border-radius: 50%; width:150px; height:150px; object-fit:cover" src="{{user.userprofile.avatar.url}}" alt="">
+    {%else%}
+    <img style="border-radius: 50%; width:150px; height:150px; object-fit:cover" src="{%static 'images/avatar.png' %}" alt="">
+   
+    {%endif%}
+
+    <h1 class="userprofile">{{user.username}}</h1>
+    {%if request.user == user%}
+        {%if user.userprofile %}
+    <a href="{%url 'update-user' %}">edit profile</a>
+        {%else%}
+        <a href="{%url 'create-user' %}">create profile</a>
+        {%endif%}
+    <p class="text-light mt-3 p-3"> {{user.userprofile.bio}}</p>
+    {%endif%}
+</div>
+
+<div class="container">
+    <div class="row  ">
+            
+        {%include 'topics_component.html'%}
+        
+  
+     
+   {%include 'feed_component.html'%}
+
+   <div class="col-lg-3 col-md-4 activity-box">
+    <h4 class="text-light">recent activity</h4>
+    {%for messages in user_messages %}
+    <small class="user">@{{messages.user.username}}</small>
+    <small class="reply">replied to "{{messages.room}}"</small><br><br>
+    <p class="message-reply-home">{{messages.body}}</p>
+    
+    {%endfor%}
+    
+  </div>
+    </div>
+</div>
+
+
+{%endblock%}

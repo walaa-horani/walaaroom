@@ -1,0 +1,17 @@
+{%extends 'main.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+
+    <div class="container  w-50 mt-5">
+        <form class="mt-5" method="POST" action="" novalidate>
+
+            {%csrf_token%}
+            {{form|crispy}}
+
+            <input class="button-edit mt-4" type="submit" value="submit">
+        </form>
+    </div>
+
+
+{%endblock%}

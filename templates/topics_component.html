@@ -1,0 +1,16 @@
+<div class="col-lg-3 col-md-3 topics">
+   
+
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{%url 'home' %}">all</a>
+            <span class="topic-count"> {{topics.count}}</span>
+    </div>
+{%for topic in topics%}
+<div class="topic ">
+<a class="all-topics" href="{%url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+<span class="topic-count">{{topic.room_set.all.count}}</span>
+</div>
+
+{%endfor%}     
+</div>

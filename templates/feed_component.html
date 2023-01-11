@@ -1,0 +1,50 @@
+
+<div class="col-lg-6 col-md-5">
+   <div class="d-flex align-items-center justify-content-between mb-3 mt-4">
+      <small class="text-muted mt-3">{{room_count}} rooms available</small>
+
+      <a class="create" href="{%url 'create-room' %}">create room</a>
+
+  
+</div>
+    {%for room in rooms%}
+
+
+    <div class="room-box">
+
+  
+    <a class="user" href="{%url 'userprofile' room.host.id %}" ><img class="avatar" src="{{room.host.avatar.url}}" alt=""> @{{room.host.username}}</a><br>
+ 
+ 
+
+ <small class="room-name"> <a href="{%url 'room' room.id %}">room name: {{room.name}} </a> </small>  
+ 
+ <div class="mt-2">
+   
+ {%if request.user == room.host%}
+
+
+
+
+ <a class="button-edit   ms-2" href="{%url 'update-room' room.id %}">edit</a>  
+ 
+ <a class="button-delete  ms-2" href="{%url 'delete-room' room.id %}">delete</a> 
+
+{%endif%}
+<hr>
+</div> 
+
+<div class="d-flex align-items-center justify-content-between">
+
+    <p class="room-name"> <i class="fa-solid fa-users"></i> joined : <span class="room-topic">{{room.participants.all.count}}</span></p>
+
+    <p class="room-name-box"> <span class="text-light">topic : </span> <span class="room-topic">{{room.topic.name}}</span></p>
+   
+
+</div>
+   </div>
+
+ 
+ 
+{%endfor%}
+</div>
